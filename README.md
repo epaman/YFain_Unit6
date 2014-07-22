@@ -1,7 +1,7 @@
 
 ## Unit 6. GUI with Swing. Part 2
 
-My solution to Unit5 of the training "Intro to Java and Java EE" taught by [Yakov Fain](https://github.com/yfain) from Farata Systems.
+My solution to Unit6 of the training "Intro to Java and Java EE" taught by [Yakov Fain](https://github.com/yfain) from Farata Systems.
 
 В этом уроке рассматривается: `Swing adapter, inner classes. Java applets, HTML and Web servers`.
 
