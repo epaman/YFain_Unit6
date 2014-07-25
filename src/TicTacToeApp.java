@@ -4,8 +4,7 @@ import java.awt.event.MouseListener;
 import java.util.Random;
 import javax.swing.*;
 
-public class TicTacToeApp extends JApplet implements MouseListener
-{
+public class TicTacToeApp extends JApplet implements MouseListener {
     
     java.awt.Panel buttonsPanel;
     
@@ -14,11 +13,13 @@ public class TicTacToeApp extends JApplet implements MouseListener
     private JButton[] buttons;
     private JButton playAgain;
 
-    public void init(){
+    
+    public void init() {
         initComponents();
     }
 
-    private void initComponents(){
+    
+    private void initComponents() {
     	
 		JPanel windowContent = new JPanel();
 		
@@ -30,46 +31,41 @@ public class TicTacToeApp extends JApplet implements MouseListener
 	    windowContent.add("South",playAgain);
         playAgain.addMouseListener(this);
 	
-    //Create the buttons panel    
-   	buttonsPanel = new Panel();	
- 	Font buttonFont =new Font ("Times New Roman", Font.PLAIN,40);
- 	buttonsPanel.setLayout(new GridLayout(4,3));
- 	
- 	            buttons = new JButton[9];
- 	             for (int i=0;i<9 ;i++){
- 	            	 buttons[i]= new JButton();
- 	            	 buttons[i].addMouseListener(this);
- 	            	 buttons[i].setFont(buttonFont);
- 	            	 buttonsPanel.add(buttons[i]);
- 	             }
- 	 	
- 	playerNumber = new JLabel(playerName, SwingConstants.CENTER);
-	playerNumber.setText("Your turn!");
-	buttonsPanel.add(playerNumber);
-    windowContent.add("Center",buttonsPanel);
- 	add(windowContent);
+	    //Create the buttons panel    
+	   	buttonsPanel = new Panel();	
+	 	Font buttonFont =new Font ("Times New Roman", Font.PLAIN,40);
+	 	buttonsPanel.setLayout(new GridLayout(4,3));
+	 	
+        buttons = new JButton[9];
+        for (int i=0; i<9; i++){
+        	buttons[i]= new JButton();
+        	buttons[i].addMouseListener(this);
+        	buttons[i].setFont(buttonFont);
+        	buttonsPanel.add(buttons[i]);
+        }
+	 	 	
+	 	playerNumber = new JLabel(playerName, SwingConstants.CENTER);
+		playerNumber.setText("Your turn!");
+		buttonsPanel.add(playerNumber);
+	    windowContent.add("Center",buttonsPanel);
+	 	add(windowContent);
  	}             
 		
     
 	public void mouseClicked(MouseEvent e) {
-	JButton currentButton = (JButton)e.getComponent();
+		JButton currentButton = (JButton)e.getComponent();
 		    
-			if (currentButton == playAgain) {
-				playAgain.setEnabled(false);
-				reset();
-			}
-		 
-			else  if (currentButton.getText() == "" && currentButton.getText()!="Play Again"){
-	                 currentButton.setText("X");
-	                 checkForWinner();
-			}
-	              
-	                	computerMove();
-	 	            	checkForWinner();
-
-	        if (currentButton.getText() == "Play Again"){ 
-	        	reset();
-	        }
+		if (currentButton == playAgain) {
+			playAgain.setEnabled(false);
+			reset();
+		} 
+		else if (currentButton.getText() == "" && currentButton.getText() != "Play Again"){
+			currentButton.setText("X");
+            checkForWinner();
+            
+            computerMove();
+            checkForWinner();
+		}      
 	}
 
 	
@@ -80,69 +76,66 @@ public class TicTacToeApp extends JApplet implements MouseListener
 		}
 
 		playerNumber.setText("Your turn!");
-}
+	}
     
 
 	private boolean findThreeInARow() {
-		if (buttons[0].getText() == buttons[1].getText()
-				&& buttons[1].getText() == buttons[2].getText()
+		if (buttons[0].getText() == buttons[1].getText() 
+				&& buttons[1].getText() == buttons[2].getText() 
 				&& buttons[0].getText() != "") {
-
 			setColorGreen(0, 1, 2);
 			playerName = buttons[0].getText();
 			return true;
-
-		} else if (buttons[3].getText() == buttons[4].getText()
+		} 
+		else if (buttons[3].getText() == buttons[4].getText()
 				&& buttons[4].getText() == buttons[5].getText()
 				&& buttons[3].getText() != "") {
 			setColorGreen(3, 4, 5);
 			playerName = buttons[3].getText();
 			return true;
-
-		} else if (buttons[6].getText() == buttons[7].getText()
+		} 
+		else if (buttons[6].getText() == buttons[7].getText()
 				&& buttons[7].getText() == buttons[8].getText()
 				&& buttons[6].getText() != "") {
 			setColorGreen(6, 7, 8);
 			playerName = buttons[6].getText();
 			return true;
-
-		} else if (buttons[0].getText() == buttons[3].getText()
+		}
+		else if (buttons[0].getText() == buttons[3].getText()
 				&& buttons[3].getText() == buttons[6].getText()
 				&& buttons[0].getText() != "") {
 			setColorGreen(0, 3, 6);
 			playerName = buttons[0].getText();
 			return true;
-
-		} else if (buttons[1].getText() == buttons[4].getText()
+		}
+		else if (buttons[1].getText() == buttons[4].getText()
 				&& buttons[4].getText() == buttons[7].getText()
 				&& buttons[1].getText() != "") {
 			setColorGreen(1, 4, 7);
 			playerName = buttons[1].getText();
 			return true;
-
-		} else if (buttons[2].getText() == buttons[5].getText()
+		}
+		else if (buttons[2].getText() == buttons[5].getText()
 				&& buttons[5].getText() == buttons[8].getText()
 				&& buttons[2].getText() != "") {
 			setColorGreen(2, 5, 8);
 			playerName = buttons[2].getText();
 			return true;
-
-		} else if (buttons[0].getText() == buttons[4].getText()
+		}
+		else if (buttons[0].getText() == buttons[4].getText()
 				&& buttons[4].getText() == buttons[8].getText()
 				&& buttons[0].getText() != "") {
 			setColorGreen(0, 4, 8);
 			playerName = buttons[0].getText();
 			return true;
-
-		} else if (buttons[2].getText() == buttons[4].getText()
+		}
+		else if (buttons[2].getText() == buttons[4].getText()
 				&& buttons[4].getText() == buttons[6].getText()
 				&& buttons[2].getText() != "") {
-
 			setColorGreen(2, 4, 6);
 			playerName = buttons[2].getText();
 			return true;
 		}
-
 		else
 			return false;
 	}
@@ -161,36 +154,33 @@ public class TicTacToeApp extends JApplet implements MouseListener
 	private void computerMove() {
 		Random r = new Random();
 		int i = r.nextInt(9);
-		if ((!buttons[i].getText().equals("")) &&(checkEmptySquare())) {
+		if ((!buttons[i].getText().equals("")) && (checkEmptySquare())) {
 			computerMove();
-		} else if(checkEmptySquare()){
+		}
+		else if(checkEmptySquare()) {
 			buttons[i].setText("O");
 		}
 	}
 	
 	
-	private boolean checkEmptySquare()
-	{
+	private boolean checkEmptySquare() {
 		for (int i = 0; i < buttons.length; i++) {
 			if(buttons[i].getText() == "")
 			{
 				return true;
 			}
-			
-	}
+		}
 		return false;
 	}
 	
-	
  
-    public void checkForWinner(){
+    public void checkForWinner() {
         if(findThreeInARow()){
             String winnerName=(playerName == "X")?"Human":"Computer";
             playerNumber.setText(winnerName + " WON!");
             playAgain.setEnabled(true);       
         }
-        else if(!checkEmptySquare())
-        {
+        else if(!checkEmptySquare()) {
         	playerNumber.setText("Try again!");
         	playAgain.setEnabled(true);
         }
@@ -208,6 +198,5 @@ public class TicTacToeApp extends JApplet implements MouseListener
 
 	public void mouseExited(MouseEvent e) {
 	}
-	
 
 }
